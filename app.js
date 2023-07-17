@@ -1,5 +1,14 @@
 //Choose container in html file
+let body = document.querySelector('body');
+
+// //Create header section
+// let header = document.createElement('div');
+// header.classList.add('header');
+// body.appendChild(header);
+
 let container = document.querySelector('#container');
+
+
 
 //Create and add left side section
 let leftSide = document.createElement('div');
@@ -33,11 +42,16 @@ rightSide.appendChild(color);
 rightSide.appendChild(black);
 container.appendChild(rightSide);
 
+//Create footer section
+let footer = document.createElement('div');
+footer.classList.add('footer');
+body.appendChild(footer);
+
 //Connect buttons
 let eraseButton = document.querySelector('.eraser');
 let clearButton = document.querySelector('.clear');
-let color = document.querySelector('.color');
-let black = document.querySelector('black');
+let colorButton = document.querySelector('.color');
+let blackButton = document.querySelector('black');
 
 //Add events to the buttons
 clearButton.addEventListener('click', () => {
