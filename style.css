@@ -1,7 +1,18 @@
 body {
     background-color: #000;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 55px;
 }
+
+/* .header {
+    background-color: #77797e;
+    color: #000;
+    width: fit-content;
+    height: 100px;
+} */
 
 #container {
     display: flex;
@@ -32,7 +43,16 @@ body {
 }
 
 .center {
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     background-color: #956;
+}
+
+.footer {
+    display: flex;
+    background-color: #77797e;
+    width: auto;
+    height: 100px;
+    margin: 0%;
+    padding: 0px;
 }
