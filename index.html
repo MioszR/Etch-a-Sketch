@@ -6,8 +6,23 @@
         <title>Etch A Sketch</title>
     </head>
     <body>
+        <div class="header">Etch a Sketch by Milosz</div>
         <div id="container">
+            <div class="left-side">
+                <button class="eraser button">Erase</button>
+                <button class="clear button">Clear</button>
+            </div>
+            <div class="center"></div>
+            <div class="right-side">
+                <button class="color button">Color</button>
+                <button class="black button">Black</button>
+            </div>
         </div>
+        <div class="sizer">
+            <div class="value">32 x 32</div>
+            <input class="sizer-button sizer" type="range" value="32" min="1" max="64">
+        </div>
+        <div class="footer">Milosz Roman © 2023</div>
         <script src="app.js"></script>
     </body>
 </html>
