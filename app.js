@@ -1,11 +1,19 @@
 document.addEventListener('DOMContentLoaded', function(){
+    createCenter(currentValue)
+    sizerAddEvents()
+
+
     console.log("hi")
 })
 
 
-let currentValue = 3;
+let currentValue = 32;
+let currentMode = 'black';
 
-//Connect grid place
+
+let mouseDown = false;
+document.body.onmousedown = () => true;
+document.body.onmouseup = () => false;
 
 //Connect buttons
 let eraseButton = document.querySelector('.eraser');
@@ -29,28 +37,64 @@ function createCenter(currentValue) {
     }
 }
 
-console.log(sizer.value)
+let changeColor = (e) => {
+    if (e.type === 'mouseover' && !mouseDown) return
+    if (currentMode === 'color') {
+        const randomR = Math.floor(Math.random() * 255);
+        const randomG = Math.floor(Math.random() * 255);
+        const randomB = Math.floor(Math.random() * 255);
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+    } else if (currentMode === 'black') {
+        e.target.style.backgroundColor === '#000';
+    } else if (currentMode === 'eraser') {
+        e.target.style.backgroundColor === '#fff';
+    }
+}
+
+let activateButton = () => {
+    if (currentMode === 'color') {
+        colorButton.classList.remove('activate');
+    } else if (currentMode === 'black') {
+        blackButton.classList.remove('activate');
+    } else if (currentMode === 'eraser') {
+        eraseButton.classList.remove('actiavte');
+    }
+
+    if (newMode === 'color') {
+        colorButton.classList.add('activate');
+    } else if (newMode === 'black') {
+        blackButton.classList.add('activate');
+    } else if (newMode === 'eraser') {
+        eraseButton.classList.add('activate');
+    }
+}
+
+let sizerAddEvents = () => {
+    sizer.addEventListener('mousemove', () => {
+        value.textContent = `${sizer.value} x ${sizer.value}`
+    })
+
+    sizer.addEventListener('click', () => {
+        value.textContent = `${sizer.value} x ${sizer.value}`
+    })
+    
+    sizer.addEventListener('mouseup', () => {
+        gridReset()
+        setSizerValue()
+        createCenter(currentValue)
+    })
+}
+
 //Add events to the buttons
 clearButton.addEventListener('click', () => {
-    center.style.backgroundColor = "#fff";
-})
-sizer.addEventListener('mousemove', () => {
-    value.textContent = `${sizer.value} x ${sizer.value}`
+    createCenter(32)
 })
 
-sizer.addEventListener('mouseup', () => {
-    gridReset()
-    setSizerValue()
-    createCenter(currentValue)
 
-    // gridMaker()
-})
 
 let setSizerValue = () => {
     currentValue = sizer.value;
 }
-
-
 
 let gridReset = () => {
     createCenter(32)
