@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 let currentValue = 32;
-let currentMode = 'black';
+let currentColor = 'white';
 
 
 let mouseDown = false;
@@ -23,7 +23,7 @@ let blackButton = document.querySelector('black');
 let sizer = document.querySelector('.sizer-button');
 let value = document.querySelector('.value');
 
-function createCenter(currentValue) {
+function createCenter(currentValue, currentColor) {
     let center = document.querySelector('.center');
     center.style.gridTemplateColumns = `repeat(${currentValue}, 1fr)`
     center.style.gridTemplateRows = `repeat(${currentValue}, 1fr)`
@@ -32,23 +32,28 @@ function createCenter(currentValue) {
 
     for(let i = 0; i < divsNum; i++) {
         let div = document.createElement('div');
-        div.style.backgroundColor = '#fff';
+        div.style.backgroundColor = "#fff"
+        div.addEventListener('mouseover', () => {
+            div.style.backgroundColor = '#000';
+        })
         center.appendChild(div)
     }
 }
 
 let changeColor = (e) => {
-    if (e.type === 'mouseover' && !mouseDown) return
-    if (currentMode === 'color') {
-        const randomR = Math.floor(Math.random() * 255);
-        const randomG = Math.floor(Math.random() * 255);
-        const randomB = Math.floor(Math.random() * 255);
-        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
-    } else if (currentMode === 'black') {
+    // if (e.type === 'mouseover' && !mouseDown) return
+    // if (currentMode === 'color') {
+    //     const randomR = Math.floor(Math.random() * 255);
+    //     const randomG = Math.floor(Math.random() * 255);
+    //     const randomB = Math.floor(Math.random() * 255);
+    //     e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+    // } else 
+    if (currentMode === 'black') {
         e.target.style.backgroundColor === '#000';
-    } else if (currentMode === 'eraser') {
-        e.target.style.backgroundColor === '#fff';
     }
+    // } else if (currentMode === 'eraser') {
+    //     e.target.style.backgroundColor === '#fff';
+    // }
 }
 
 let activateButton = () => {
@@ -87,7 +92,7 @@ let sizerAddEvents = () => {
 
 //Add events to the buttons
 clearButton.addEventListener('click', () => {
-    createCenter(32)
+    gridReset('white')
 })
 
 
@@ -96,8 +101,9 @@ let setSizerValue = () => {
     currentValue = sizer.value;
 }
 
-let gridReset = () => {
-    createCenter(32)
+let gridReset = (color) => {
+    createCenter(32, color)
+    value.textContent = `32 x 32`
 }
 
 
